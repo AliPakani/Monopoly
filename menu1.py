@@ -4,7 +4,8 @@ import re
 import uuid
 import bcrypt
 import keyboard  
-import time     
+import time
+import winsound     
 
 FILE_PATH = "players.json"
 
@@ -82,7 +83,7 @@ def login():
 
     found_user = None
     for player in players:
-        if player['username'] == username_input:
+        if player.get('Username') == username_input:
             found_user = player
             break
 
@@ -92,7 +93,7 @@ def login():
         return None  
 
     input_bytes = password_input.encode('utf-8')
-    stored_hash_bytes = found_user['password'].encode('utf-8')
+    stored_hash_bytes = found_user.get('Password', '').encode('utf-8')
 
     if bcrypt.checkpw(input_bytes, stored_hash_bytes):
         print(f"Welcome back, {username_input}!")
@@ -124,14 +125,29 @@ def interactive_menu(title, options):
         event = keyboard.read_event()
 
         if event.event_type == keyboard.KEY_DOWN:
+            
+            should_play_beep = False
+
             if event.name == 'up':
-                selected_index = (selected_index - 1) % len(options)
+                new_index = (selected_index - 1) % len(options)
+                if new_index != selected_index:
+                    selected_index = new_index
+                    should_play_beep = True
             elif event.name == 'down':
-                selected_index = (selected_index + 1) % len(options)
+                new_index = (selected_index + 1) % len(options)
+                if new_index != selected_index:
+                    selected_index = new_index
+                    should_play_beep = True
             elif event.name == 'enter':
                 return options[selected_index]
             
-            time.sleep(0.2)
+            if should_play_beep:
+                try:
+                    winsound.Beep(600, 130)
+                except Exception:
+                    pass
+            
+            time.sleep(0.05)
 
 def register_menu():
     while True:

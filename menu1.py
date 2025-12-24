@@ -56,12 +56,13 @@ def signup():
 
     new_player = {
         "id": unique_id,
-        "username": username,
-        "email": email,
-        "password": f_password,
-        "position": 1,
-        "assest": 1500,
-        "ownership": []
+        "Username": username,
+        "Email": email,
+        "Password": f_password,
+        "Position": 1,
+        "Balance": 1500,
+        "Status":"Solvent",
+        "Estate": []
     }
 
     players.append(new_player)
@@ -195,4 +196,4 @@ def pause_menu():
             time.sleep(1)
             exit()
 
-pause_menu()
+main_menu()

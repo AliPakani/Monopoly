@@ -22,6 +22,28 @@ def save_players(players):
 def is_valid_email(email):
     pattern = r'^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$'
     return bool(re.match(pattern, email))
+def check_email_signup(email):
+    players = load_players()
+    pattern = r"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
+
+    if not re.match(pattern, email):
+        return False, "(；￣Д￣)？Invalid email format."
+
+    if email in [player["email"] for player in players]:
+        return False, "This email is already registered"
+
+    return True, "Email accepted."
+
+def check_pass(password):
+   if len(password) < 8:
+      return False, "┐(ﾟ～ﾟ)┌ Password must be longer than 8 characters"
+   if " " in password:
+      return False, "┐(-。-;)┌ The password must not contain spaces"
+   if not re.search(r"[!@#$%^&*]", password):
+      return False, "(@_@;)The password must contain at least one of these characters: ! @ # $ % ^ & *"
+   if not re.search(r"\d", password):
+      return False, "(?_?)The password must contain at least one number"
+   return True, "(^-^; Password accepted"
 
 def signup():
 
@@ -37,17 +59,21 @@ def signup():
 
     username = input("Enter username: ").strip()
 
-    while True:
-        email = input("Enter email: ").strip()
-        if is_valid_email(email):
+    while True:      
+        email=input("Enter email: ").strip()
+        valid, msg = check_email_signup(email)
+        if valid:
             break
-        print("Please enter a valid email")
+        else:
+            print(f"Error: {msg}")
 
     while True:
-        password = input("Enter password: ").strip()
-        if len(password) >= 8:
+        password=input("Enter password: ").strip()
+        valid, msg = check_pass(password)
+        if valid:
             break
-        print("Password must be at least 8 characters long.")
+        else:
+            print(f"Error: {msg}")
 
     unique_id = str(uuid.uuid4())
     password_bytes = password.encode('utf-8')

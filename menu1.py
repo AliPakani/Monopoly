@@ -9,6 +9,8 @@ import winsound
 
 FILE_PATH = "players.json"
 
+ready_players = []
+
 def load_players():
     if os.path.exists(FILE_PATH):
         with open(FILE_PATH, "r") as f:
@@ -19,9 +21,6 @@ def save_players(players):
     with open(FILE_PATH, "w") as f:
         json.dump(players, f, indent=4)
 
-def is_valid_email(email):
-    pattern = r'^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$'
-    return bool(re.match(pattern, email))
 def check_email_signup(email):
     players = load_players()
     pattern = r"^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$"
@@ -29,13 +28,13 @@ def check_email_signup(email):
     if not re.match(pattern, email):
         return False, "(；￣Д￣)？Invalid email format."
 
-    if email in [player["email"] for player in players]:
+    if email in [player["Email"] for player in players]:
         return False, "This email is already registered"
 
     return True, "Email accepted."
 
 def check_pass(password):
-   if len(password) < 8:
+   if len(password) <= 8:
       return False, "┐(ﾟ～ﾟ)┌ Password must be longer than 8 characters"
    if " " in password:
       return False, "┐(-。-;)┌ The password must not contain spaces"
@@ -45,7 +44,19 @@ def check_pass(password):
       return False, "(?_?)The password must contain at least one number"
    return True, "(^-^; Password accepted"
 
+def start_game_logic():
+    os.system('cls' if os.name == 'nt' else 'clear')
+    print("\033[1m★ GAME STARTED! ★\033[0m")
+    print(f"Players in match: {', '.join(ready_players)}")
+    #تابع موقت منطق بازی که بعد از مرج، تابع اصلی جایگزین میشود
+
 def signup():
+
+    try:
+        if keyboard.is_pressed('enter'):
+           input() 
+    except:
+        pass
 
     os.system('cls' if os.name == 'nt' else 'clear')
     print("\033[1m༼ つ ◕_◕ ༽つ Sign Up\033[0m")
@@ -57,7 +68,11 @@ def signup():
         input("Press Enter to continue...")
         return
 
-    username = input("Enter username: ").strip()
+    username = ""
+    while not username:
+        os.system('cls' if os.name == 'nt' else 'clear')
+        print("\033[1m༼ つ ◕_◕ ༽つ Sign Up\033[0m") 
+        username = input("Enter username: ").strip()
 
     while True:      
         email=input("Enter email: ").strip()
@@ -99,6 +114,13 @@ def signup():
     input("Press Enter to continue...") 
 
 def login():
+
+    try:
+        if keyboard.is_pressed('enter'):
+           input() 
+    except:
+        pass
+
     os.system('cls' if os.name == 'nt' else 'clear')
     print("\033[1m༼ つ ◕_◕ ༽つ LOGIN\033[0m")
     
@@ -123,6 +145,16 @@ def login():
 
     if bcrypt.checkpw(input_bytes, stored_hash_bytes):
         print(f"Welcome back, {username_input}!")
+
+        if username_input not in ready_players:
+            if len(ready_players) < 4:
+                ready_players.append(username_input)
+                print(f"\033[92m[+] {username_input} added to ready list.\033[0m")
+                print(f"Ready Players ({len(ready_players)}/4): {ready_players}")
+            else:
+                print("Lobby is full! Cannot add more players.")
+        else:
+            print(f"User {username_input} is already logged in and ready.")
         time.sleep(0.5)
         input("Press Enter to continue...")
         return found_user 
@@ -179,13 +211,22 @@ def register_menu():
     while True:
         choice = interactive_menu(
             "\033[1m༼ つ ◕_◕ ༽つ Register & Start\033[0m",
-            ["● Signup", "● Start" ,"● Back to Main Menu"]
+            ["● Start" ,"● Signup", "● Login", "● Back to Main Menu"]
         )
 
         if choice == "● Signup":
             signup()
         elif choice == "● Start":
-            print("main()")
+
+            if len(ready_players) == 4:
+                start_game_logic()
+            else:
+                print(f"\033[91mCannot start yet! Only {len(ready_players)}/4 players are logged in.\033[0m")
+                print(f"Current list: {ready_players}")
+                time.sleep(1) 
+                input("Press Enter to continue...")
+        elif choice == "● Login":
+            login()
         elif choice == "● Back to Main Menu":
             return 
     
@@ -199,7 +240,16 @@ def loadgame_menu():
         if choice == "● Login":
             login()
         elif choice == "● Start":
-            print("main()")
+            
+            if len(ready_players) == 4:
+            
+                start_game_logic()
+            else:
+                print(f"\033[91mCannot start yet! Only {len(ready_players)}/4 players are logged in.\033[0m")
+                print(f"Current list: {ready_players}")
+                time.sleep(1)
+
+                input("Press Enter to continue...")
         elif choice == "● Back to Main Menu":
             return
 
@@ -219,7 +269,10 @@ def main_menu():
             print("Leaderboard selected (Not implemented yet)")
             input("Press Enter to return...")
         elif choice == "● Exit":
+            ready_players.clear()
+            print("All players logged out.")
             print("Good Bye!")
+            time.sleep(1)
             break 
 def pause_menu():
     
@@ -235,7 +288,9 @@ def pause_menu():
             print("show_leaderboard")
         elif choice == "● Save & Exit":
             print("Saving game state...") 
+            print("All players logged out.")
             time.sleep(1)
-            exit()
+            ready_players.clear()
+            break
 
 main_menu()

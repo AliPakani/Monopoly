@@ -219,7 +219,7 @@ def main_menu():
             print("Leaderboard selected (Not implemented yet)")
             input("Press Enter to return...")
         elif choice == "● Exit":
-            print("Good Bye")
+            print("Good Bye!")
             break 
 def pause_menu():
     

@@ -5,7 +5,19 @@ import uuid
 import bcrypt
 import keyboard  
 import time
-import winsound     
+import winsound 
+
+
+import rich    
+from rich import print
+from rich import inspect
+from time import sleep
+from rich.progress import track
+from rich.console import Console
+from rich.panel import Panel
+console = Console()
+
+
 
 FILE_PATH = "players.json"
 
@@ -52,43 +64,49 @@ def start_game_logic():
 
 def signup():
 
-    try:
-        if keyboard.is_pressed('enter'):
-           input() 
-    except:
-        pass
+    
 
     os.system('cls' if os.name == 'nt' else 'clear')
-    print("\033[1m༼ つ ◕_◕ ༽つ Sign Up\033[0m")
+    print("[magenta]\033[1m༼ つ ◕_◕ ༽つ Sign Up\033[0m[/magenta]")
     
     players = load_players()
 
     if len(players) >= 4:
-        print("Maximum player limit reached (4).")
+        print("[red]Maximum player limit reached (4).[/red]")
         input("Press Enter to continue...")
         return
 
     username = ""
     while not username:
         os.system('cls' if os.name == 'nt' else 'clear')
-        print("\033[1m༼ つ ◕_◕ ༽つ Sign Up\033[0m") 
-        username = input("Enter username: ").strip()
+        print("[magenta]\033[1m༼ つ ◕_◕ ༽つ Sign Up\033[0m[/magenta]") 
+        username = console.input("[bold blue]Enter username: [/bold blue]").strip()
 
-    while True:      
-        email=input("Enter email: ").strip()
+    while True:
+             
+        email=console.input("[bold blue]Enter email: [/bold blue]").strip()
         valid, msg = check_email_signup(email)
         if valid:
             break
         else:
-            print(f"Error: {msg}")
+            print(f"[red]Error: {msg}[/red]")
+            print("[yellow]Please try again in 3 seconds...[/yellow]")
+            for step in track(range(3)):
+                sleep(1)
+                step 
+            
 
     while True:
-        password=input("Enter password: ").strip()
+        password=console.input("[bold blue]Enter password: [/bold blue]").strip()
         valid, msg = check_pass(password)
         if valid:
             break
         else:
-            print(f"Error: {msg}")
+            print(f"[red]Error: {msg}[/red]")
+            print("[yellow]Please try again in 3 seconds...[/yellow]")
+            for step in track(range(3)):
+                sleep(1)
+                step 
 
     unique_id = str(uuid.uuid4())
     password_bytes = password.encode('utf-8')
@@ -110,8 +128,8 @@ def signup():
     players.append(new_player)
     save_players(players)
 
-    print(f"Player {username} registered successfully!")
-    input("Press Enter to continue...") 
+    print(f"[yellow]Player {username} registered successfully![/yellow]")
+    console.input("[bold yellow]Press Enter to continue...[/bold yellow]") 
 
 def login():
 
@@ -122,12 +140,12 @@ def login():
         pass
 
     os.system('cls' if os.name == 'nt' else 'clear')
-    print("\033[1m༼ つ ◕_◕ ༽つ LOGIN\033[0m")
+    print("[blue]\033[1m༼ つ ◕_◕ ༽つ LOGIN\033[0m[/blue]")
     
     players = load_players() 
 
-    username_input = input("Enter username: ").strip()
-    password_input = input("Enter password: ").strip()
+    username_input = console.input("[bold blue]Enter username: [/bold blue]").strip()
+    password_input = console.input("[bold blue]Enter password: [/bold blue]").strip()
 
     found_user = None
     for player in players:
@@ -136,31 +154,32 @@ def login():
             break
 
     if found_user is None:
-        print("User not found!")
-        input("Press Enter to continue...")
+        print("[red]User not found![/red]")
+        console.input("[bold yellow]Press Enter to continue...[/bold yellow]")
         return None  
 
     input_bytes = password_input.encode('utf-8')
     stored_hash_bytes = found_user.get('Password', '').encode('utf-8')
 
     if bcrypt.checkpw(input_bytes, stored_hash_bytes):
-        print(f"Welcome back, {username_input}!")
+
+        print(f"[cyan]Welcome back, {username_input}![/cyan]")
 
         if username_input not in ready_players:
             if len(ready_players) < 4:
                 ready_players.append(username_input)
-                print(f"\033[92m[+] {username_input} added to ready list.\033[0m")
-                print(f"Ready Players ({len(ready_players)}/4): {ready_players}")
+                print(f"[cyan]\033[92m[+] {username_input} added to ready list.\033[0m[/cyan]")
+                print(f"[cyan]Ready Players ({len(ready_players)}/4): {ready_players}[/cyan]")
             else:
-                print("Lobby is full! Cannot add more players.")
+                print("[red]Lobby is full! Cannot add more players.[/red]")
         else:
-            print(f"User {username_input} is already logged in and ready.")
+            print(f"[cyan]User {username_input} is already logged in and ready.[/cyan]")
         time.sleep(0.5)
-        input("Press Enter to continue...")
+        console.input("[bold yellow]Press Enter to continue...[/bold yellow]")
         return found_user 
     else:
-        print("Incorrect password!")
-        input("Press Enter to continue...")
+        print("[red]Incorrect password![/red]")
+        console.input("[bold yellow]Press Enter to continue...[/bold yellow]")
         return None
 
 def interactive_menu(title, options):
@@ -172,13 +191,14 @@ def interactive_menu(title, options):
     while True:
         os.system('cls' if os.name == 'nt' else 'clear')
         
-        print(title)
+        console.print(f"[bold cyan]{title}[/bold cyan]")
         print("")
         for i, option in enumerate(options):
             if i == selected_index:
-                print(f"> {option}") 
+                panel = Panel(option, style="bold cyan", border_style="cyan", padding=(0, 1), expand=False)
+                console.print(panel)
             else:
-                print(f"   {option}")
+                print(f"    [magenta]{option}[/magenta]")
         
         event = keyboard.read_event()
 

@@ -133,11 +133,7 @@ def signup():
 
 def login():
 
-    try:
-        if keyboard.is_pressed('enter'):
-           input() 
-    except:
-        pass
+   
 
     os.system('cls' if os.name == 'nt' else 'clear')
     print("[blue]\033[1m༼ つ ◕_◕ ༽つ LOGIN\033[0m[/blue]")

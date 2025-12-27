@@ -64,10 +64,16 @@ def start_game_logic():
 
 def signup():
 
-    
+    try:
+        if keyboard.is_pressed("enter"):
+            input()
+    except:
+        pass
+
 
     os.system('cls' if os.name == 'nt' else 'clear')
-    print("[magenta]\033[1m༼ つ ◕_◕ ༽つ Sign Up\033[0m[/magenta]")
+
+    print("[magenta]༼ つ ◕_◕ ༽つ Sign Up[/magenta]")
     
     players = load_players()
 
@@ -79,7 +85,7 @@ def signup():
     username = ""
     while not username:
         os.system('cls' if os.name == 'nt' else 'clear')
-        print("[magenta]\033[1m༼ つ ◕_◕ ༽つ Sign Up\033[0m[/magenta]") 
+        print("[magenta]༼ つ ◕_◕ ༽つ Sign Up[/magenta]") 
         username = console.input("[bold blue]Enter username: [/bold blue]").strip()
 
     while True:
@@ -133,10 +139,14 @@ def signup():
 
 def login():
 
-   
+    try:
+        if keyboard.is_pressed("enter"):
+            input()
+    except:
+        pass
 
     os.system('cls' if os.name == 'nt' else 'clear')
-    print("[blue]\033[1m༼ つ ◕_◕ ༽つ LOGIN\033[0m[/blue]")
+    print("[blue]༼ つ ◕_◕ ༽つ LOGIN[/blue]")
     
     players = load_players() 
 
@@ -164,7 +174,7 @@ def login():
         if username_input not in ready_players:
             if len(ready_players) < 4:
                 ready_players.append(username_input)
-                print(f"[cyan]\033[92m[+] {username_input} added to ready list.\033[0m[/cyan]")
+                print(f"[cyan][+] {username_input} added to ready list.[/cyan]")
                 print(f"[cyan]Ready Players ({len(ready_players)}/4): {ready_players}[/cyan]")
             else:
                 print("[red]Lobby is full! Cannot add more players.[/red]")
@@ -194,7 +204,7 @@ def interactive_menu(title, options):
                 panel = Panel(option, style="bold cyan", border_style="cyan", padding=(0, 1), expand=False)
                 console.print(panel)
             else:
-                print(f"    [magenta]{option}[/magenta]")
+                print(f"  [magenta]{option}[/magenta]")
         
         event = keyboard.read_event()
 
@@ -226,7 +236,7 @@ def interactive_menu(title, options):
 def register_menu():
     while True:
         choice = interactive_menu(
-            "\033[1m༼ つ ◕_◕ ༽つ Register & Start\033[0m",
+            "༼ つ ◕_◕ ༽つ Register & Start",
             ["● Start" ,"● Signup", "● Login", "● Back to Main Menu"]
         )
 
@@ -237,7 +247,7 @@ def register_menu():
             if len(ready_players) == 4:
                 start_game_logic()
             else:
-                print(f"\033[91mCannot start yet! Only {len(ready_players)}/4 players are logged in.\033[0m")
+                print(f"Cannot start yet! Only {len(ready_players)}/4 players are logged in.")
                 print(f"Current list: {ready_players}")
                 time.sleep(1) 
                 input("Press Enter to continue...")
@@ -249,7 +259,7 @@ def register_menu():
 def loadgame_menu():
     while True:
         choice = interactive_menu(
-            "\033[1m༼ つ ◕_◕ ༽つ Load Game\033[0m",
+            "༼ つ ◕_◕ ༽つ Load Game",
             ["● Login","● Start", "● Back to Main Menu"]
         )
 
@@ -272,7 +282,7 @@ def loadgame_menu():
 def main_menu():
     while True:
         choice = interactive_menu(
-            "\033[1m༼ つ ◕_◕ ༽つ MONOPOLY\033[0m",
+            "༼ つ ◕_◕ ༽つ MONOPOLY",
             ["● New Game", "● Load Game", "● Leaderboard", "● Exit"]
         )
 
@@ -294,7 +304,7 @@ def pause_menu():
     
     while True:
         choice = interactive_menu(
-            f"\033[1m༼ つ ◕_◕ ༽つPause Menu\033[0m",
+            f"༼ つ ◕_◕ ༽つPause Menu",
             ["● Resume Game", "● Show Leaderboard", "● Save & Exit"]
         )
 

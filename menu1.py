@@ -23,7 +23,7 @@ console = Console()
 
 CELLS = json.load(open("CELLS.json"))
 FILE_PATH = "PLAYERS.json"
-
+scoreboard_file = "Scoreboard.json"
 ready_players = []
 
 def load_players():
@@ -190,7 +190,41 @@ def login():
         print("[red]Incorrect password![/red]")
         console.input("[bold yellow]Press Enter to continue...[/bold yellow]")
         return None
+
+def exist_s():
+    if not os.path.exists(scoreboard_file):
+        with open(scoreboard_file, "w") as f:
+            f.write("[]")
+        return
     
+def load_score_leaderboard():
+    exist_s()
+    if not os.path.exists(scoreboard_file):
+        return []
+    with open(scoreboard_file, "r") as f:
+        return json.load(f)
+   
+def result_score_leaderboard(lead_data):
+    results= load_score_leaderboard()
+    number=len(results)+1
+
+    def check(i):
+        if i < len(lead_data):
+            return lead_data[i]
+        else:
+            return None
+        
+    result={
+        "Game": number,
+        "Rank1": check(0),
+        "Rank2": check(1),
+        "Rank3": check(2),
+        "Rank4": check(3),
+    }
+    results.append(result)
+    with open(scoreboard_file, "w") as f:
+        json.dump(results, f, indent=4)
+
 def Find_Price(Estate) :
     Price = Estate["Price"]
     return Price
@@ -251,6 +285,7 @@ def score_leaderboard():
         })
 
     lead_data.sort(key=lambda player: (player["TotalAssets"], player["PropertyCount"], player["Balance"]), reverse=True)
+    result_score_leaderboard(lead_data)
 
     table = Table(title="[bold cyan]Leaderboard[/bold cyan]", box=box.ROUNDED)
     table.add_column("Rank", justify="right",style="magenta" )

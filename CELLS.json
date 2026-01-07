@@ -1,0 +1,646 @@
+[
+    {
+        "name": "",
+        "no.": 0,
+        "Price": 0,
+        "Rent": [
+            0
+        ],
+        "Owner": "",
+        "color": "",
+        "Number": 0,
+        "Build_Price": 0
+    },
+
+    {
+        "name": "GO",
+        "no.": 1,
+        "Price": 0,
+        "Rent": [
+            0
+        ],
+        "Owner": "",
+        "color": "",
+        "Number": 0,
+        "Build_Price": 0
+    },
+
+    {
+        "name": "Mediter-Ranean Avenue",
+        "no.": 2,
+        "Price": 60,
+        "Rent": [
+            2,
+            10,
+            30,
+            90,
+            160,
+            250
+        ],
+        "Owner": "",
+        "color": "Brown",
+        "Number": 0,
+        "Build_Price": 50
+    },
+
+    {
+        "name": "Community Chest1",
+        "no.": 3,
+        "Price": 0,
+        "Rent": [
+            0
+        ],
+        "Owner": "",
+        "color": "",
+        "Number": 0,
+        "Build_Price": 0
+    },
+
+    {
+        "name": "Baltic Avenue",
+        "no.": 4,
+        "Price": 60,
+        "Rent": [
+            4,
+            20,
+            60,
+            180,
+            320,
+            450
+        ],
+        "Owner": "",
+        "color": "Brown",
+        "Number": 0,
+        "Build_Price": 50
+    },
+
+    {
+        "name": "Income Tax",
+        "no.": 5,
+        "Price": 0,
+        "Rent": [
+            200
+        ],
+        "Owner": "",
+        "color": "",
+        "Number": 0,
+        "Build_Price": 0
+    },
+
+    {
+        "name": "Reading Railroad",
+        "no.": 6,
+        "Price": 200,
+        "Rent": [
+            25
+        ],
+        "Owner": "",
+        "color": "",
+        "Number": 0,
+        "Build_Price": 0
+    },
+
+    {
+        "name": "Oriental Avenue",
+        "no.": 7,
+        "Price": 100,
+        "Rent": [
+            6,
+            30,
+            90,
+            270,
+            400,
+            550
+        ],
+        "Owner": "",
+        "color": "Cyien",
+        "Number": 0,
+        "Build_Price": 50
+    },
+
+    {
+        "name": "Chance1",
+        "no.": 8,
+        "Price": 0,
+        "Rent": [
+            0
+        ],
+        "Owner": "",
+        "color": "",
+        "Number": 0,
+        "Build_Price": 0
+    },
+
+    {
+        "name": "Vermont Avenue",
+        "no.": 9,
+        "Price": 100,
+        "Rent": [
+            6
+        ],
+        "Owner": "",
+        "color": "Cyien",
+        "Number": 0,
+        "Rent_Build": [
+            30,
+            90,
+            270,
+            400,
+            550
+        ],
+        "Build_Price": 50
+    },
+
+    {
+        "name": "Connecticut Avenue",
+        "no.": 10,
+        "Price": 120,
+        "Rent": [
+            8,
+            40,
+            100,
+            300,
+            450,
+            600
+        ],
+        "Owner": "",
+        "color": "Cyien",
+        "Number": 0,
+        "Build_Price": 50
+    },
+
+    {
+        "name": "Jail",
+        "no.": 11,
+        "Price": 0,
+        "Rent": [
+            0
+        ],
+        "Owner": "",
+        "color": "",
+        "Number": 0,
+        "Build_Price": 0
+    },
+
+    {
+        "name": "St.Charles Place",
+        "no.": 12,
+        "Price": 140,
+        "Rent": [
+            10,
+            50,
+            150,
+            450,
+            625,
+            750
+        ],
+        "Owner": "",
+        "color": "Pink",
+        "Number": 0,
+        "Build_Price": 100
+    },
+
+    {
+        "name": "Electric Company",
+        "no.": 13,
+        "Price": 150,
+        "Rent": [
+            0
+        ],
+        "Owner": "",
+        "color": "",
+        "Number": 0,
+        "Build_Price": 0
+    },
+
+    {
+        "name": "States Avenue",
+        "no.": 14,
+        "Price": 140,
+        "Rent": [
+            10,
+            50,
+            150,
+            450,
+            625,
+            750
+        ],
+        "Owner": "",
+        "color": "Pink",
+        "Number": 0,
+        "Build_Price": 100
+    },
+
+    {
+        "name": "Virginia Avenue",
+        "no.": 15,
+        "Price": 160,
+        "Rent": [
+            12,
+            60,
+            180,
+            500,
+            700,
+            900
+        ],
+        "Owner": "",
+        "color": "Pink",
+        "Number": 0,
+        "Build_Price": 100
+    },
+
+    {
+        "name": "Pennsylvania Railroad",
+        "no.": 16,
+        "Price": 200,
+        "Rent": [
+            25
+        ],
+        "Owner": "",
+        "color": "",
+        "Number": 0,
+        "Build_Price": 0
+    },
+
+    {
+        "name": "St.James Place",
+        "no.": 17,
+        "Price": 180,
+        "Rent": [
+            14,
+            70,
+            200,
+            550,
+            750,
+            950
+        ],
+        "Owner": "",
+        "color": "Orange",
+        "Number": 0,
+        "Build_Price": 100
+    },
+
+    {
+        "name": "Community Chest2",
+        "no.": 18,
+        "Price": 0,
+        "Rent": [
+            0
+        ],
+        "Owner": "",
+        "color": "",
+        "Number": 0,
+        "Build_Price": 0
+    },
+
+    {
+        "name": "Tennessee Avenue",
+        "no.": 19,
+        "Price": 180,
+        "Rent": [
+            14,
+            70,
+            200,
+            550,
+            750,
+            950
+        ],
+        "Owner": "",
+        "color": "Orange",
+        "Number": 0,
+        "Build_Price": 100
+    },
+
+    {
+        "name": "New-York Avenue",
+        "no.": 20,
+        "Price": 200,
+        "Rent": [
+            16,
+            80,
+            220,
+            600,
+            800,
+            1000
+        ],
+        "Owner": "",
+        "color": "Orange",
+        "Number": 0,
+        "Build_Price": 100
+    },
+
+    {
+        "name": "Parking",
+        "no.": 21,
+        "Price": 0,
+        "Rent": [
+            0
+        ],
+        "Owner": "",
+        "color": "",
+        "Number": 0,
+        "Build_Price": 0
+    },
+
+    {
+        "name": "Kentucky Avenue",
+        "no.": 22,
+        "Price": 220,
+        "Rent": [
+            18,
+            90,
+            250,
+            700,
+            875,
+            1050
+        ],
+        "Owner": "",
+        "color": "Red",
+        "Number": 0,
+        "Build_Price": 150
+    },
+
+    {
+        "name": "Chance2",
+        "no.": 23,
+        "Price": 0,
+        "Rent": [
+            0
+        ],
+        "Owner": "",
+        "color": "",
+        "Number": 0,
+        "Build_Price": 0
+    },
+
+    {
+        "name": "Indiana Avenue",
+        "no.": 24,
+        "Price": 220,
+        "Rent": [
+            18,
+            90,
+            250,
+            700,
+            875,
+            1050
+        ],
+        "Owner": "",
+        "color": "Red",
+        "Number": 0,
+        "Build_Price": 150
+    },
+
+    {
+        "name": "Illinois Avenue",
+        "no.": 25,
+        "Price": 240,
+        "Rent": [
+            20,
+            100,
+            300,
+            750,
+            925,
+            1100
+        ],
+        "Owner": "",
+        "color": "Red",
+        "Number": 0,
+        "Build_Price": 150
+    },
+
+    {
+        "name": "B&O Railroad",
+        "no.": 26,
+        "Price": 200,
+        "Rent": [
+            25
+        ],
+        "Owner": "",
+        "color": "",
+        "Number": 0,
+        "Build_Price": 0
+    },
+
+    {
+        "name": "Atlantic Avenue",
+        "no.": 27,
+        "Price": 260,
+        "Rent": [
+            22,
+            110,
+            330,
+            800,
+            975,
+            1150
+        ],
+        "Owner": "",
+        "color": "Yellow",
+        "Number": 0,
+        "Build_Price": 150
+    },
+
+    {
+        "name": "Ventnor Avenue",
+        "no.": 28,
+        "Price": 260,
+        "Rent": [
+            22,
+            110,
+            330,
+            800,
+            975,
+            1150
+        ],
+        "Owner": "",
+        "color": "Yellow",
+        "Number": 0,
+        "Build_Price": 150
+    },
+
+    {
+        "name": "Water Works",
+        "no.": 29,
+        "Price": 150,
+        "Rent": [
+            0
+        ],
+        "Owner": "",
+        "color": "",
+        "Number": 0,
+        "Build_Price": 0
+    },
+
+    {
+        "name": "Marvin Gardens",
+        "no.": 30,
+        "Price": 280,
+        "Rent": [
+            24,
+            120,
+            360,
+            850,
+            1025,
+            1200
+        ],
+        "Owner": "",
+        "color": "Yellow",
+        "Number": 0,
+        "Build_Price": 150
+    },
+
+    {
+        "name": "Go To Jail",
+        "no.": 31,
+        "Price": 0,
+        "Rent": [
+            0
+        ],
+        "Owner": "",
+        "color": "",
+        "Number": 0,
+        "Build_Price": 0
+    },
+
+    {
+        "name": "Pacific Avenue",
+        "no.": 32,
+        "Price": 300,
+        "Rent": [
+            26,
+            130,
+            390,
+            900,
+            1100,
+            1275
+        ],
+        "Owner": "",
+        "color": "Green",
+        "Number": 0,
+        "Build_Price": 200
+    },
+
+    {
+        "name": "North-Carolina Avenue",
+        "no.": 33,
+        "Price": 300,
+        "Rent": [
+            26,
+            130,
+            390,
+            900,
+            1100,
+            1275
+        ],
+        "Owner": "",
+        "color": "Green",
+        "Number": 0,
+        "Build_Price": 200
+    },
+
+    {
+        "name": "Community Chest3",
+        "no.": 34,
+        "Price": 0,
+        "Rent": [
+            0
+        ],
+        "Owner": "",
+        "color": "",
+        "Number": 0,
+        "Build_Price": 0
+    },
+
+    {
+        "name": "Pennsylvania Avenue",
+        "no.": 35,
+        "Price": 320,
+        "Rent": [
+            28,
+            150,
+            450,
+            1000,
+            1200,
+            1400
+        ],
+        "Owner": "",
+        "color": "Green",
+        "Number": 0,
+        "Build_Price": 200
+    },
+
+    {
+        "name": "Short Line",
+        "no.": 36,
+        "Price": 200,
+        "Rent": [
+            25
+        ],
+        "Owner": "",
+        "color": "",
+        "Number": 0,
+        "Build_Price": 0
+    },
+
+    {
+        "name": "Chance3",
+        "no.": 37,
+        "Price": 0,
+        "Rent": [
+            0
+        ],
+        "Owner": "",
+        "color": "",
+        "Number": 0,
+        "Build_Price": 0
+    },
+
+    {
+        "name": "Park Place",
+        "no.": 38,
+        "Price": 350,
+        "Rent": [
+            35,
+            175,
+            500,
+            1100,
+            1300,
+            1500
+        ],
+        "Owner": "",
+        "color": "Blue",
+        "Number": 0,
+        "Build_Price": 200
+    },
+
+    {
+        "name": "Luxury Tax",
+        "no.": 39,
+        "Price": 0,
+        "Rent": [
+            100
+        ],
+        "Owner": "",
+        "color": "",
+        "Number": 0,
+        "Build_Price": 0
+    },
+
+    {
+        "name": "Boardwalk",
+        "no.": 40,
+        "Price": 400,
+        "Rent": [
+            50,
+            200,
+            600,
+            1400,
+            1700,
+            2000
+        ],
+        "Owner": "",
+        "color": "Blue",
+        "Number": 0,
+        "Build_Price": 200
+    }
+]

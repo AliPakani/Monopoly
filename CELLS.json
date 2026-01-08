@@ -1,6 +1,7 @@
 [
     {
         "name": "",
+        "alias" : "",
         "no.": 0,
         "Price": 0,
         "Rent": [
@@ -14,6 +15,7 @@
 
     {
         "name": "GO",
+        "alias" : "STR",
         "no.": 1,
         "Price": 0,
         "Rent": [
@@ -27,6 +29,7 @@
 
     {
         "name": "Mediter-Ranean Avenue",
+        "alias" : "BR1",
         "no.": 2,
         "Price": 60,
         "Rent": [
@@ -44,7 +47,8 @@
     },
 
     {
-        "name": "Community Chest1",
+        "name": "Community Chest",
+        "alias" : "COM",
         "no.": 3,
         "Price": 0,
         "Rent": [
@@ -58,6 +62,7 @@
 
     {
         "name": "Baltic Avenue",
+        "alias" : "BR2",
         "no.": 4,
         "Price": 60,
         "Rent": [
@@ -76,6 +81,7 @@
 
     {
         "name": "Income Tax",
+        "alias" : "TAX",
         "no.": 5,
         "Price": 0,
         "Rent": [
@@ -89,6 +95,7 @@
 
     {
         "name": "Reading Railroad",
+        "alias" : "RR1",
         "no.": 6,
         "Price": 200,
         "Rent": [
@@ -102,6 +109,7 @@
 
     {
         "name": "Oriental Avenue",
+        "alias" : "LB1",
         "no.": 7,
         "Price": 100,
         "Rent": [
@@ -119,7 +127,8 @@
     },
 
     {
-        "name": "Chance1",
+        "name": "Chance",
+        "alias" : "CHC",
         "no.": 8,
         "Price": 0,
         "Rent": [
@@ -133,6 +142,7 @@
 
     {
         "name": "Vermont Avenue",
+        "alias" : "LB2",
         "no.": 9,
         "Price": 100,
         "Rent": [
@@ -153,6 +163,7 @@
 
     {
         "name": "Connecticut Avenue",
+        "alias" : "LB3",
         "no.": 10,
         "Price": 120,
         "Rent": [
@@ -171,6 +182,7 @@
 
     {
         "name": "Jail",
+        "alias" : "JAL",
         "no.": 11,
         "Price": 0,
         "Rent": [
@@ -184,6 +196,7 @@
 
     {
         "name": "St.Charles Place",
+        "alias" : "PK1",
         "no.": 12,
         "Price": 140,
         "Rent": [
@@ -202,6 +215,7 @@
 
     {
         "name": "Electric Company",
+        "alias" : "UTL",
         "no.": 13,
         "Price": 150,
         "Rent": [
@@ -215,6 +229,7 @@
 
     {
         "name": "States Avenue",
+        "alias" : "PK2",
         "no.": 14,
         "Price": 140,
         "Rent": [
@@ -233,6 +248,7 @@
 
     {
         "name": "Virginia Avenue",
+        "alias" : "PK3",
         "no.": 15,
         "Price": 160,
         "Rent": [
@@ -251,6 +267,7 @@
 
     {
         "name": "Pennsylvania Railroad",
+        "alias" : "RR2",
         "no.": 16,
         "Price": 200,
         "Rent": [
@@ -264,6 +281,7 @@
 
     {
         "name": "St.James Place",
+        "alias" : "OR1",
         "no.": 17,
         "Price": 180,
         "Rent": [
@@ -281,7 +299,8 @@
     },
 
     {
-        "name": "Community Chest2",
+        "name": "Community Chest",
+        "alias" : "COM",
         "no.": 18,
         "Price": 0,
         "Rent": [
@@ -295,6 +314,7 @@
 
     {
         "name": "Tennessee Avenue",
+        "alias" : "OR2",
         "no.": 19,
         "Price": 180,
         "Rent": [
@@ -313,6 +333,7 @@
 
     {
         "name": "New-York Avenue",
+        "alias" : "OR3",
         "no.": 20,
         "Price": 200,
         "Rent": [
@@ -331,6 +352,7 @@
 
     {
         "name": "Parking",
+        "alias" : "FRE",
         "no.": 21,
         "Price": 0,
         "Rent": [
@@ -344,6 +366,7 @@
 
     {
         "name": "Kentucky Avenue",
+        "alias" : "RD1",
         "no.": 22,
         "Price": 220,
         "Rent": [
@@ -361,7 +384,8 @@
     },
 
     {
-        "name": "Chance2",
+        "name": "Chance",
+        "alias" : "CHC",
         "no.": 23,
         "Price": 0,
         "Rent": [
@@ -375,6 +399,7 @@
 
     {
         "name": "Indiana Avenue",
+        "alias" : "RD2",
         "no.": 24,
         "Price": 220,
         "Rent": [
@@ -393,6 +418,7 @@
 
     {
         "name": "Illinois Avenue",
+        "alias" : "RD3",
         "no.": 25,
         "Price": 240,
         "Rent": [
@@ -411,6 +437,7 @@
 
     {
         "name": "B&O Railroad",
+        "alias" : "RR3",
         "no.": 26,
         "Price": 200,
         "Rent": [
@@ -424,6 +451,7 @@
 
     {
         "name": "Atlantic Avenue",
+        "alias" : "YL1",
         "no.": 27,
         "Price": 260,
         "Rent": [
@@ -442,6 +470,7 @@
 
     {
         "name": "Ventnor Avenue",
+        "alias" : "YL2",
         "no.": 28,
         "Price": 260,
         "Rent": [
@@ -460,6 +489,7 @@
 
     {
         "name": "Water Works",
+        "alias" : "UTL",
         "no.": 29,
         "Price": 150,
         "Rent": [
@@ -473,6 +503,7 @@
 
     {
         "name": "Marvin Gardens",
+        "alias" : "YL3",
         "no.": 30,
         "Price": 280,
         "Rent": [
@@ -491,6 +522,7 @@
 
     {
         "name": "Go To Jail",
+        "alias" : "JAL",
         "no.": 31,
         "Price": 0,
         "Rent": [
@@ -504,6 +536,7 @@
 
     {
         "name": "Pacific Avenue",
+        "alias" : "GR1",
         "no.": 32,
         "Price": 300,
         "Rent": [
@@ -522,6 +555,7 @@
 
     {
         "name": "North-Carolina Avenue",
+        "alias" : "GR2",
         "no.": 33,
         "Price": 300,
         "Rent": [
@@ -539,7 +573,8 @@
     },
 
     {
-        "name": "Community Chest3",
+        "name": "Community Chest",
+        "alias" : "COM",
         "no.": 34,
         "Price": 0,
         "Rent": [
@@ -553,6 +588,7 @@
 
     {
         "name": "Pennsylvania Avenue",
+        "alias" : "GR3",
         "no.": 35,
         "Price": 320,
         "Rent": [
@@ -571,6 +607,7 @@
 
     {
         "name": "Short Line",
+        "alias" : "RR4",
         "no.": 36,
         "Price": 200,
         "Rent": [
@@ -583,7 +620,8 @@
     },
 
     {
-        "name": "Chance3",
+        "name": "Chance",
+        "alias" : "CHC",
         "no.": 37,
         "Price": 0,
         "Rent": [
@@ -597,6 +635,7 @@
 
     {
         "name": "Park Place",
+        "alias" : "DB1",
         "no.": 38,
         "Price": 350,
         "Rent": [
@@ -615,6 +654,7 @@
 
     {
         "name": "Luxury Tax",
+        "alias" : "TAX",
         "no.": 39,
         "Price": 0,
         "Rent": [
@@ -628,6 +668,7 @@
 
     {
         "name": "Boardwalk",
+        "alias" : "DB2",
         "no.": 40,
         "Price": 400,
         "Rent": [

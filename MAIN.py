@@ -11,51 +11,107 @@ from JAIL import Jail
 from RAILROAD import Railroad
 from COMPANY import Company_Buy, Company_Rent
 
+def load_data() :
+    global PLAYERS, CELLS
+    try :
+        PLAYERS = json.load(open("PLAYERS.json"))
+    except FileNotFoundError:
+        print("PLAYERS.json not found!")
+        PLAYERS = []
+    try:
+        CELLS = json.load(open("CELLS.json"))
+    except :
+        print("CELLS.json not found!")
+        CELLS = []
 
-PLAYERS = json.load(open("PLAYERS.json"))
-CELLS = json.load(open("CELLS.json"))
+load_data()
 
-
-def Hotel(Estate) :
+def Hotel(Estate, Username) :
     COLOR = Estate["color"]
     Required_Estate = Same_Color_Estates(COLOR)
     for i in Required_Estate :
         if i["Number"] != 4 :
             print("You can't build a hotel!")
             return 0
-    Choice = input("Do you want to build a hotel?(Y/N)")
-    if Choice == 'Y' :
-        Amount = Estate["Build_Price"]
-        Check = Check_Rent(Username, Amount)
-        if Check == 1 :
-            for i in Required_Estate :
-                i["Rent"].pop(0)
-            print("You build a hotel succesfully!")
-        else :
-            Username["Status"] = "Solvent"
-            print("You don't have enought money to build!")
-
+    while True :
+        Choice = input("Do you want to build a hotel?(Y/N)").lower()
+        first_character = Choice[0]
+        if not Choice :
+            print("Invalid input! TRY AGAIN")
+            try :
+                if first_character == 'y' :
+                    Amount = Estate["Build_Price"]
+                    Check = Check_Rent(Username, Amount)
+                    if Check == 1 :
+                        for i in Required_Estate :
+                            i["Rent"].pop(0)
+                        print("You build a hotel succesfully!")
+                    else :
+                        Username["Status"] = "Solvent"
+                        print("You don't have enought money to build!")
+                if first_character == 'n' :
+                    return
+            except :
+                print("Invalid input! TRY AGAIN")
 
 def House(Username) :
-    Buy = input("DO you want to build house?(Y/N)")
-    if Buy == "Y" :
-        COLOR = input("Which color do you want to build in?")
-        Required_Estate = Same_Color_Estates(COLOR)
-        if Check_Ownership(Username, Required_Estate) == 1 :
-            Choice = CELLS[Estate_selection(Required_Estate)]
-            if Consecutiveness(Choice, Required_Estate) == 1 :
-                Amount = Choice["Build_Price"]
-                Check = Check_Rent(Username, Amount)
-                if Check == 1 :
-                    Choice["Rent"].pop(0)
-                    Choice["Number"] += 1
-                    print("You build a house succesfully!")
-                else :
-                    Username["Status"] = "Solvent"
-                    print("You don't have enought money to build!")
+        while True :
+            house_built = False
+            Buy = input("Do you want to build house?(Y/N)").lower()
+            first_character = Buy[0]
+            if not Buy :
+                print("Invalid input! TRY AGAIN")
+                continue
+            elif first_character == "y" :
+                while True :
+                    COLOR = input("Which color do you want to build in?").lower().strip()
+                    Color = ["brown", "red", "green", "cyen", "blue", "yellow", "orange", "pink"]
+                    if not COLOR :
+                        print("Invalid input! TRY AGAIN")
+                        continue
+                    if COLOR not in Color :
+                        print("Please enter a valid color")
+                        continue
+                    if COLOR in Color :  
+                        Required_Estate = Same_Color_Estates(COLOR)
+                        if Check_Ownership(Username, Required_Estate) == 1 :
+                            Choice = CELLS[Estate_selection(Required_Estate)]
+                            if Consecutiveness(Choice, Required_Estate) == 1 :
+                                Amount = Choice["Build_Price"]
+                                Check = Check_Rent(Username, Amount)
+                                if Check == 1 :
+                                    Choice["Rent"].pop(0)
+                                    Choice["Number"] += 1
+                                    print("You build a house succesfully!")
+                                    house_built = True
+                                    break
+                                else :
+                                    Username["Status"] = "Solvent"
+                                    print("You don't have enought money to build!")
+                            elif Consecutiveness(Choice, Required_Estate) == 0 :
+                                Hotel(Choice, Username)
+            elif first_character == "n" :
+                return 
             else :
-                Hotel(Choice)
+               print("Invalid input! TRY AGAIN")
+            if house_built == True :
+                break
 
+
+def check_build(Username) :
+    COLOR = ["brown", "red", "green", "cyen", "blue", "yellow", "orange", "pink"]
+    for color in COLOR :
+        Same_Color = Same_Color_Estates(color)
+        r = same_color(Username, color)
+        if len(Same_Color) == len(r) :
+            return 1
+    return 0
+def same_color(Username, color) :
+    r = []
+    for Estate in Username["Estate"] :
+        if Estate["color"] == color :
+            r.append(Estate)
+    return r
 
 def Same_Color_Estates(COLOR) :
     Required = []
@@ -66,9 +122,7 @@ def Same_Color_Estates(COLOR) :
 
 
 def Check_Ownership(Username, Required_Estate) :
-    print(Required_Estate)
     for Estate in Required_Estate :
-        print(Estate["Owner"], Username["Username"])
         if Estate["Owner"] != Username["Username"] :
             print("You can't build in this color!")
             return 0
@@ -77,9 +131,22 @@ def Check_Ownership(Username, Required_Estate) :
 
 def Estate_selection(Required_Estate) :
     Name = [Estate["name"] for Estate in Required_Estate]
+    if not Name :
+        print("no estates available")
+        return None
     print(Name)
-    Choice = Required_Estate[int(input("Which Estate do you want to build in?")) - 1]
-    return Choice["no."]
+    while True :
+        try :
+            index = int(input("Which Estate do you want to build in?")) - 1
+            if index >= 0 and index<= len(Required_Estate) :
+                C = Required_Estate[index]
+                return C["no."]
+        except ValueError:
+            print("Please enter a valid number!")
+            return None
+        except Exception as e :
+            print("error in building houses")
+            return None
 
 
 def Consecutiveness(Choice, Required_Estate) :
@@ -92,7 +159,12 @@ def Consecutiveness(Choice, Required_Estate) :
         else :
             print("You can't build house in this Estate!")
     else :
-        return 0
+        if len(Choice["Rent"]) == 2:
+            print("Yey")
+            return 0
+        else :
+            print("You have already built a hotel!")
+
 
 def Save_Game():
     global PLAYERS, CELLS
@@ -105,7 +177,8 @@ def Save_Game():
     with open("CELLS.json", "w", encoding="utf-8") as f:
         f.write(cells_data)
 
-while True :
+playing = True
+while playing :
     for Username in PLAYERS :
         if Username["Status"] == "Solvent" :
             FLAG = 0
@@ -116,7 +189,6 @@ while True :
                 if Username["Arrested"] :
                     Jail(Username)
                 else :
-                    House(Username)
                     if Roll(Username) == 0 :
                         FLAG = 1
                     else :
@@ -135,20 +207,44 @@ while True :
                         Community_chest(Username, Number)
                         Chance(Username, Number)
                         if Number == 31 :
-                            Go_To_Jail(Username)
+                            Go_To_Jail(Username, Number, CELLS, PLAYERS)
                     else :                                                              #خانه های قابل خرید
-                        if Find_Owner(Cell) == "" :                                     
-                            Choice = input("Do you want to buy it?(Y/N)")
-                            if Choice == 'Y' :                                             #خرید
-                                Amount = Find_Price(Cell)
-                                if Check_Balance(Username, Amount) == 1 :
-                                    Buy(Username, Cell)
-                                    Dedute(Username, Amount)
-                                    Owner_Replace(Username, Cell)
-                                    Railroad(Username, Number, Cell)
-                                    Company_Buy(Username, Number, Cell)
+                        if Find_Owner(Cell) == "" : 
+                            while True :                                  
+                                Choice = input("Do you want to buy it?(Y/N)").lower().strip()
+                                if not Choice :
+                                    print("please enter Y or N")
+                                    continue
+                                first_character = Choice[0]
+                                if first_character == 'y' :                                             #خرید
+                                    Amount = Find_Price(Cell)
+                                    if Check_Balance(Username, Amount) == 1 :
+                                        Buy(Username, Cell)
+                                        Dedute(Username, Amount)
+                                        Owner_Replace(Username, Cell)
+                                        Railroad(Username, Number, Cell)
+                                        Company_Buy(Username, Number, Cell)
+                                        list = [Cell]
+                                        for same_color_estate in CELLS :
+                                            if Cell["color"] == same_color_estate["color"] :
+                                                list.append(same_color_estate)
+                                        if len(list) >= 2:  
+                                            all_owned = True
+                                            for estate in list:
+                                                if Find_Owner(estate) != Username["Username"]:
+                                                    all_owned = False
+                                                    break
+                                        if all_owned:
+                                            print("You can build Houses!")
+                                            House(Username)
+                                            break
+                                    else :
+                                        print(f"You can't buy {Cell["name"]}")    
+                                    break
+                                elif first_character == "n" :
+                                    break
                                 else :
-                                    print(f"You can't buy {Cell["name"]}")                    
+                                    print("invalid input!please enter Y or N")           
                         else :                                                             #اجاره
                             Owner = Find_Owner(Cell)
                             for i in PLAYERS:
@@ -157,6 +253,19 @@ while True :
                                     break
                             if Username == Owner :
                                 print("You're the owner!")
+                                list = [Cell]
+                                for same_color_estate in CELLS :
+                                    if Cell["color"] == same_color_estate["color"] :
+                                        list.append(same_color_estate)
+                                if len(list) >= 2:  
+                                    all_owned = True
+                                    for estate in list:
+                                        if Find_Owner(estate) != Username["Username"]:
+                                            all_owned = False
+                                            break
+                                if all_owned:
+                                    print("You can build Houses!")
+                                    House(Username)
                             else :
                                 Company = Company_Rent(Username, Owner, Number)
                                 if Company > 0 :
@@ -170,9 +279,33 @@ while True :
                                     Can_Pay = Check_Rent(Username, Amount)
                                     if Can_Pay == 1 :
                                         Deposit(Owner, Amount)
-    Save = input("Do you want to save game?(Y/N)")
-    if Save == "Y" :
-        Save_Game()
-    Exit = input("Do you want to end game?(Y/N)")                                     #خروج از بازی
-    if Exit == "Y" :
-        break    
+    while True :
+        Save = input("Do you want to save game?(Y/N)").lower().strip()
+        if not Save:
+            print("please enter Y or N")
+            continue
+        first_character = Save[0]
+        if first_character == "y":
+            Save_Game()
+            break
+        elif first_character == "n":
+            break
+        else:
+            print("invalid input!please enter Y or N")                                    #خروج از بازی
+    while True:
+        Exit = input("Do you want to end game?(Y/N)").lower().strip()
+        if not Exit:
+            print("please enter Y or N")
+            continue
+        first_character = Exit[0]
+        if first_character == "y":
+            playing = False
+            break
+        elif first_character == "n":
+            break
+        else:
+            print("invalid input!please enter Y or N")
+        
+    if not playing:
+        break
+    

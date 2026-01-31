@@ -13,18 +13,68 @@ from rich import print
 from rich import inspect
 from time import sleep
 from rich.progress import track
-from rich.console import Console
+from rich.console import Console, Group
 from rich.panel import Panel
 from rich.table import Table
+from rich.text import Text
+from rich.align import Align
 from rich import box
+
+
 console = Console()
-
-
+DARK_BLUE = "#000080"    
+COLOR_GOLD = "gold1"     
+GREY = "grey74"          
+SKY_BLUE = "sky_blue1"   
+ERROR_RED = "red"
+SUCCESS_GREEN = "chartreuse3"
 
 CELLS = json.load(open("CELLS.json"))
 FILE_PATH = "PLAYERS.json"
 scoreboard_file = "Scoreboard.json"
 ready_players = []
+
+
+MONOPOLY_LOGO = """
+  ███╗   ███╗ ██████╗ ███╗   ██╗ ██████╗ ██████╗  ██████╗ ██╗  ██╗   ██╗
+  ████╗ ████║██╔═══██╗████╗  ██║██╔═══██╗██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝
+  ██╔████╔██║██║   ██║██╔██╗ ██║██║   ██║██████╔╝██║   ██║██║   ╚████╔╝ 
+██║╚██╔╝██║██║   ██║██║╚██╗██║██║   ██║██╔═══╝ ██║   ██║██║    ╚██╔╝  
+██║ ╚═╝ ██║╚██████╔╝██║ ╚████║╚██████╔╝██║     ╚██████╔╝███████╗██║   
+╚═╝     ╚═╝ ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝ ╚═╝      ╚═════╝ ╚══════╝╚═╝   
+"""
+
+def get_logo_text():
+    return Text(MONOPOLY_LOGO, style=f"{COLOR_GOLD}", justify="center")
+
+
+def create_menu_panel(content_group, title_text):
+    
+    return Panel(
+        content_group,
+        border_style=f"bold {COLOR_GOLD}",
+        title=f"[bold {DARK_BLUE}] {title_text} [/]", 
+        title_align="center",
+        padding=(1, 4),
+        expand=False,
+        width=35,
+        height=13
+    )
+
+def show_message(title, message, color=GREY, sleep_time=2):
+    os.system('cls' if os.name == 'nt' else 'clear')
+    
+    console.print(Align.center(get_logo_text()))
+    console.print(Text("\n"))
+
+    content = Group(
+        Text("\n"),
+        Align.center(Text(message, style=color)),
+        Text("\n")
+    )
+    console.print(Align.center(create_menu_panel(content, title)))
+    time.sleep(sleep_time)
+
 
 def load_players():
     if os.path.exists(FILE_PATH):
@@ -61,6 +111,16 @@ def check_pass(password):
 
 def start_game_logic():
     os.system('cls' if os.name == 'nt' else 'clear')
+    
+    event2 = keyboard.read_event()
+
+    if event2.event_type == keyboard.KEY_DOWN:
+
+            if event2.name == 'esc': 
+                pause_menu()
+
+    console.print(Align.center(get_logo_text()))
+    console.print(Text("\n"))
     print("\033[1m★ GAME STARTED! ★\033[0m")
     print(f"Players in match: {', '.join(ready_players)}")
     #تابع موقت منطق بازی که بعد از مرج، تابع اصلی جایگزین میشود
@@ -81,41 +141,52 @@ def signup():
     players = load_players()
 
     if len(players) >= 4:
-        print("[red]Maximum player limit reached (4).[/red]")
+        show_message("ERROR", "Maximum player limit reached (4).", ERROR_RED)
         input("Press Enter to continue...")
         return
 
     username = ""
     while not username:
         os.system('cls' if os.name == 'nt' else 'clear')
-        print("[magenta]༼ つ ◕_◕ ༽つ Sign Up[/magenta]") 
+        
+        content = Group(
+            Align.center(Text("Step 1/3: Enter Username", style=GREY)),
+            Text("\n")
+        )
+        console.print(Align.center(create_menu_panel(content, "SIGN UP"))) 
         username = console.input("[bold blue]Enter username: [/bold blue]").strip()
+        if username == " ":
+            username = ""
 
     while True:
-             
+        os.system('cls' if os.name == 'nt' else 'clear')
+
+        content = Group(
+            Align.center(Text(f"User: {username}", style=DARK_BLUE)),
+            Align.center(Text("Step 2/3: Enter Email", style=GREY)),
+            Text("\n")
+        )
+        console.print(Align.center(create_menu_panel(content, "SIGN UP")))  
+        
         email=console.input("[bold blue]Enter email: [/bold blue]").strip()
         valid, msg = check_email_signup(email)
-        if valid:
-            break
-        else:
-            print(f"[red]Error: {msg}[/red]")
-            print("[yellow]Please try again in 3 seconds...[/yellow]")
-            for step in track(range(3)):
-                sleep(1)
-                step 
+        if valid: break
+        show_message("INVALID EMAIL", msg, ERROR_RED)
             
 
     while True:
+        os.system('cls' if os.name == 'nt' else 'clear')
+
+        content = Group(
+            Align.center(Text(f"User: {username}", style=DARK_BLUE)),
+            Align.center(Text("Step 3/3: Enter Password", style=GREY)),
+            Text("\n")
+        )
+        console.print(Align.center(create_menu_panel(content, "SIGN UP")))
         password=console.input("[bold blue]Enter password: [/bold blue]").strip()
         valid, msg = check_pass(password)
-        if valid:
-            break
-        else:
-            print(f"[red]Error: {msg}[/red]")
-            print("[yellow]Please try again in 3 seconds...[/yellow]")
-            for step in track(range(3)):
-                sleep(1)
-                step 
+                if valid: break
+        show_message("WEAK PASSWORD", msg, ERROR_RED)
 
     unique_id = str(uuid.uuid4())
     password_bytes = password.encode('utf-8')
@@ -131,7 +202,11 @@ def signup():
         "Position": 1,
         "Balance": 1500,
         "Status":"Solvent",
-        "Estate": []
+        "Arrested": False,
+        "Estate": [],
+        "Railroad": [],
+        "Company": [],
+        "Dice": []
     }
 
     players.append(new_player)
@@ -148,6 +223,14 @@ def login():
     except:
         pass
 
+    os.system('cls' if os.name == 'nt' else 'clear')     
+
+    content = Group(
+        Align.center(Text("Enter your credentials below", style=GREY)),
+        Text("\n")
+    )
+    console.print(Align.center(create_menu_panel(content, "LOGIN")))
+
     os.system('cls' if os.name == 'nt' else 'clear')
     print("[blue]༼ つ ◕_◕ ༽つ LOGIN[/blue]")
     
@@ -163,32 +246,24 @@ def login():
             break
 
     if found_user is None:
-        print("[red]User not found![/red]")
-        console.input("[bold yellow]Press Enter to continue...[/bold yellow]")
+        show_message("ERROR", "User not found!", ERROR_RED)
         return None  
 
     input_bytes = password_input.encode('utf-8')
     stored_hash_bytes = found_user.get('Password', '').encode('utf-8')
 
-    if bcrypt.checkpw(input_bytes, stored_hash_bytes):
-
-        print(f"[cyan]Welcome back, {username_input}![/cyan]")
-
+    if bcrypt.checkpw(password_input.encode('utf-8'), found_user.get('Password', '').encode('utf-8')):    
         if username_input not in ready_players:
             if len(ready_players) < 4:
                 ready_players.append(username_input)
-                print(f"[cyan][+] {username_input} added to ready list.[/cyan]")
-                print(f"[cyan]Ready Players ({len(ready_players)}/4): {ready_players}[/cyan]")
+                show_message("WELCOME", f"Welcome back, {username_input}!", SUCCESS_GREEN)
             else:
-                print("[red]Lobby is full! Cannot add more players.[/red]")
+                show_message("LOBBY FULL", "Lobby is full!", ERROR_RED)
         else:
-            print(f"[cyan]User {username_input} is already logged in and ready.[/cyan]")
-        time.sleep(0.5)
-        console.input("[bold yellow]Press Enter to continue...[/bold yellow]")
+            show_message("INFO", "Already logged in.", SKY_BLUE)
         return found_user 
     else:
-        print("[red]Incorrect password![/red]")
-        console.input("[bold yellow]Press Enter to continue...[/bold yellow]")
+        show_message("ERROR", "Incorrect password!", ERROR_RED)
         return None
 
 def exist_s():
@@ -315,30 +390,50 @@ def score_leaderboard():
     console.print(table)
     return lead_data
 
-def interactive_menu(title, options):
+def interactive_menu(title_str, options):
     
     selected_index = 0
     
     time.sleep(0.2) 
 
     while True:
-        os.system('cls' if os.name == 'nt' else 'clear')
         
-        console.print(f"[bold cyan]{title}[/bold cyan]")
-        print("")
+        os.system('cls' if os.name == 'nt' else 'clear')
+        console.print(Align.center(get_logo_text()))
+        menu_items = []
+        
         for i, option in enumerate(options):
             if i == selected_index:
-                panel = Panel(option, style="bold cyan", border_style="cyan", padding=(0, 1), expand=False)
-                console.print(panel)
+                item = Panel(
+                    Align.center(Text(option, style=f"bold {COLOR_GOLD}")), 
+                    border_style=f"bold {DARK_BLUE}",
+                    expand=False,
+                    padding=(0, 4) 
+                )
             else:
-                print(f"  [magenta]{option}[/magenta]")
+                item = Text(option, style=f"{GREY}")
+
+            menu_items.append(Align.center(item))
+            if i != selected_index:
+                menu_items.append(Text(" "))
+
+        if ready_players:
+            menu_items.append(Text("\n"))
+            menu_items.append(Align.center(Text(f"Lobby: {len(ready_players)}/4 {ready_players}", style=SKY_BLUE)))
+
+        final_content = Group(*menu_items)
+        
+        menu_panel = create_menu_panel(final_content, title_str)
+        
+        console.print(Align.center(menu_panel))
         
         event = keyboard.read_event()
 
         if event.event_type == keyboard.KEY_DOWN:
             
             should_play_beep = False
-
+            if event.name == 'esc':
+                pause_menu()
             if event.name == 'up':
                 new_index = (selected_index - 1) % len(options)
                 if new_index != selected_index:
@@ -363,13 +458,13 @@ def interactive_menu(title, options):
 def register_menu():
     while True:
         choice = interactive_menu(
-            "༼ つ ◕_◕ ༽つ Register & Start",
-            ["● Start" ,"● Signup", "● Login", "● Back to Main Menu"]
+            "REGISTER & START",
+            ["START MATCH" ,"SIGN UP", "LOGIN", "BACK TO MAIN MENU"]
         )
 
-        if choice == "● Signup":
+        if choice == "SIGN UP":
             signup()
-        elif choice == "● Start":
+        elif choice == "START MATCH":
 
             if len(ready_players) == 4:
                 start_game_logic()
@@ -378,21 +473,21 @@ def register_menu():
                 print(f"Current list: {ready_players}")
                 time.sleep(1) 
                 input("Press Enter to continue...")
-        elif choice == "● Login":
+        elif choice == "LOGIN":
             login()
-        elif choice == "● Back to Main Menu":
+        elif choice == "BACK TO MAIN MENU":
             return 
     
 def loadgame_menu():
     while True:
         choice = interactive_menu(
-            "༼ つ ◕_◕ ༽つ Load Game",
-            ["● Login","● Start", "● Back to Main Menu"]
+            "LOAD GAME",
+            ["LOGIN","START", "BACK TO MAIN MENU"]
         )
 
-        if choice == "● Login":
+        if choice == "LOGIN":
             login()
-        elif choice == "● Start":
+        elif choice == "START":
             
             if len(ready_players) == 4:
             
@@ -403,41 +498,39 @@ def loadgame_menu():
                 time.sleep(1)
 
                 input("Press Enter to continue...")
-        elif choice == "● Back to Main Menu":
+        elif choice == "BACK TO MAIN MENU":
             return
 
 def main_menu():
     while True:
         choice = interactive_menu(
-            "༼ つ ◕_◕ ༽つ MONOPOLY",
-            ["● New Game", "● Load Game", "● Leaderboard", "● Exit"]
+            "MAIN MENU",
+            ["NEW GAME", "LOAD GAME", "LEADERBOARD", "EXIT"]
         )
 
-        if choice == "● New Game":
+        if choice == "NEW GAME":
             register_menu()
-        elif choice == "● Load Game":
+        elif choice == "LOAD GAME":
             loadgame_menu()
-        elif choice == "● Leaderboard":
+        elif choice == "LEADERBOARD":
             score_leaderboard()
-        elif choice == "● Exit":
+        elif choice == "EXIT":
             ready_players.clear()
-            print("All players logged out.")
-            print("Good Bye!")
-            time.sleep(1)
+            show_message("GOODBYE", "See you next time!", DARK_BLUE)
             break 
 def pause_menu():
     
     while True:
         choice = interactive_menu(
-            f"༼ つ ◕_◕ ༽つPause Menu",
-            ["● Resume Game", "● Show Leaderboard", "● Save & Exit"]
+            "PAUSE MENU",
+            ["RESUME GAME", "SHOW LEADERBOARD", "SAVE & EXIT"]
         )
 
-        if choice == "● Resume Game":
-            return "resume" 
-        elif choice == "● Show Leaderboard":
-            print("show_leaderboard")
-        elif choice == "● Save & Exit":
+        if choice == "RESUME GAME":
+            break
+        elif choice == "SHOW LEADERBOARD":
+            score_leaderboard()
+        elif choice == "SAVE & EXIT":
             print("Saving game state...") 
             print("All players logged out.")
             time.sleep(1)

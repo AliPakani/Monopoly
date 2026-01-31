@@ -135,8 +135,6 @@ def signup():
 
 
     os.system('cls' if os.name == 'nt' else 'clear')
-
-    print("[magenta]༼ つ ◕_◕ ༽つ Sign Up[/magenta]")
     
     players = load_players()
 
@@ -148,6 +146,7 @@ def signup():
     username = ""
     while not username:
         os.system('cls' if os.name == 'nt' else 'clear')
+        console.print(Align.center(get_logo_text()))
         
         content = Group(
             Align.center(Text("Step 1/3: Enter Username", style=GREY)),
@@ -160,6 +159,7 @@ def signup():
 
     while True:
         os.system('cls' if os.name == 'nt' else 'clear')
+        console.print(Align.center(get_logo_text()))
 
         content = Group(
             Align.center(Text(f"User: {username}", style=DARK_BLUE)),
@@ -176,6 +176,7 @@ def signup():
 
     while True:
         os.system('cls' if os.name == 'nt' else 'clear')
+        console.print(Align.center(get_logo_text()))
 
         content = Group(
             Align.center(Text(f"User: {username}", style=DARK_BLUE)),
@@ -185,7 +186,7 @@ def signup():
         console.print(Align.center(create_menu_panel(content, "SIGN UP")))
         password=console.input("[bold blue]Enter password: [/bold blue]").strip()
         valid, msg = check_pass(password)
-                if valid: break
+        if valid: break
         show_message("WEAK PASSWORD", msg, ERROR_RED)
 
     unique_id = str(uuid.uuid4())
@@ -217,12 +218,6 @@ def signup():
 
 def login():
 
-    try:
-        if keyboard.is_pressed("enter"):
-            input()
-    except:
-        pass
-
     os.system('cls' if os.name == 'nt' else 'clear')     
 
     content = Group(
@@ -232,12 +227,32 @@ def login():
     console.print(Align.center(create_menu_panel(content, "LOGIN")))
 
     os.system('cls' if os.name == 'nt' else 'clear')
-    print("[blue]༼ つ ◕_◕ ༽つ LOGIN[/blue]")
     
     players = load_players() 
-
-    username_input = console.input("[bold blue]Enter username: [/bold blue]").strip()
-    password_input = console.input("[bold blue]Enter password: [/bold blue]").strip()
+    username_input = ""
+    while not username_input:
+        os.system('cls' if os.name == 'nt' else 'clear') 
+        console.print(Align.center(get_logo_text()))
+        content = Group(
+            Align.center(Text("Step 1/2: Enter Username", style=GREY)),
+            Text("\n")
+        )
+        console.print(Align.center(create_menu_panel(content, "LOGIN")))   
+        username_input = console.input("[bold blue]Enter username: [/bold blue]").strip()
+        if username_input == " ":
+            username_input = ""
+    password_input = ""
+    while not password_input:
+        os.system('cls' if os.name == 'nt' else 'clear')
+        console.print(Align.center(get_logo_text()))
+        content = Group(
+            Align.center(Text("Step 2/2: Enter Password", style=GREY)),
+            Text("\n")
+        )
+        console.print(Align.center(create_menu_panel(content, "LOGIN")))
+        password_input = console.input("[bold blue]Enter password: [/bold blue]").strip()
+        if password_input == " ":
+            password_input = ""
 
     found_user = None
     for player in players:

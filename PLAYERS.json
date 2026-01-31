@@ -1,0 +1,30 @@
+[
+    {
+        "id": "b57a238b-e416-4af3-88f7-d2e243cbbeec",
+        "Username": "mehdi",
+        "Email": "mehdi@gmail.com",
+        "Password": "$2b$12$7ix1c16JfY5cbTF91c09f.A0Ku9wWSJYty4ndwuXQFrOTK/GASPiC",
+        "Position": 1,
+        "Balance": 1500,
+        "Status": "Solvent",
+        "Arrested": false,
+        "Estate": [],
+        "Railroad": [],
+        "Company": [],
+        "Dice": []
+    },
+    {
+        "id": "aae9837e-094e-4694-9b56-fbed9d177d9a",
+        "Username": "ali",
+        "Email": "ali@gmail.com",
+        "Password": "$2b$12$Z5WZ3Ko2h6MIvIWZHhI4xe74BPt/QiyCYFXLFIjb1I4Qt/ZTIJjK2",
+        "Position": 1,
+        "Balance": 1500,
+        "Status": "Solvent",
+        "Arrested": false,
+        "Estate": [],
+        "Railroad": [],
+        "Company": [],
+        "Dice": []
+    }
+]

@@ -111,21 +111,14 @@ def check_pass(password):
 
 def start_game_logic():
     os.system('cls' if os.name == 'nt' else 'clear')
-    
-    event2 = keyboard.read_event()
-
-    if event2.event_type == keyboard.KEY_DOWN:
-
-            if event2.name == 'esc': 
-                pause_menu()
-
-    console.print(Align.center(get_logo_text()))
-    console.print(Text("\n"))
-    print("\033[1m★ GAME STARTED! ★\033[0m")
-    print(f"Players in match: {', '.join(ready_players)}")
-    #تابع موقت منطق بازی که بعد از مرج، تابع اصلی جایگزین میشود
     Main()
-
+    score_leaderboard()
+    time.sleep(20)
+    if os.path.exists(FILE_PATH):
+        os.remove(FILE_PATH)
+    if os.path.exists(scoreboard_file):
+        os.remove(scoreboard_file)   
+    ready_players.clear()
 def signup():
 
     try:

@@ -40,7 +40,7 @@ def Check_Rent(Username, Amount, CELLS):
             Debt = 0
             while Debt // 2 < Amount : 
                 Debt = Check_Assest(Username, AssestList)
-                print(("YOU ARE THE OWNER OF THESE ESTATES:", same_owner(Username, CELLS)).center(size))
+                print(f"YOU ARE THE OWNER OF THESE ESTATES: {same_owner(Username, CELLS)}".center(size))
                 EstateList = list(map(int, input(("Which estate do you want to sell?").center(size)).split()))
                 try :
                     AssestList = Find_Estate(EstateList)

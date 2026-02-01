@@ -21,7 +21,15 @@ def Check_Assest(Username, AssestList) :                    #جمع قیمت ا�
     return Sum
 
 
-def Check_Rent(Username, Amount):
+def same_owner(Username, CELLS) :
+    i = []
+    for Estate in CELLS :
+        if Estate["Owner"] == Username["Username"] :
+            i.append(Estate["no."])
+    return i
+
+
+def Check_Rent(Username, Amount, CELLS):
     if Check_Balance(Username, Amount) == 1 :
         Dedute(Username, Amount)
         Username["Arrested"] = False
@@ -32,6 +40,7 @@ def Check_Rent(Username, Amount):
             Debt = 0
             while Debt < Amount : 
                 Debt = Check_Assest(Username, AssestList)
+                print(same_owner(Username, CELLS))
                 EstateList = list(map(int, input(("Which estate do you want to sell?").center(size))))
                 try :
                     AssestList = Find_Estate(EstateList)

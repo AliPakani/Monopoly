@@ -10,6 +10,7 @@ from JAIL import Jail
 from RAILROAD import Railroad
 from COMPANY import Company_Buy, Company_Rent
 from BOARD import board_structure, animated_move
+from SCOREBOARD import score_leaderboard
 import time
 import os
 
@@ -166,6 +167,8 @@ while True :
     if c == 3 :
         break
     c = 0
+    score_leaderboard()
+    Choice = input("PRESS ENTER TO CONTINUE...".center(size))
     for Username in PLAYERS :
         if Username["Status"] == "Solvent" :
             FLAG = 0

@@ -39,7 +39,7 @@ def Chance(Username, Number, PLAYERS, CELLS):
                     Deposit(Username, 300)
                     time.sleep(2)
                 else :
-                    Check_Rent(Username, 200)
+                    Check_Rent(Username, 200, CELLS)
                     time.sleep(2)
             case 5 :
                 print("Let's see what luck has for you...".center(size))
@@ -57,6 +57,6 @@ def Chance(Username, Number, PLAYERS, CELLS):
                 print("-->You have been elected Chairman of the Board, Pay each player $50".center(size))
                 for player in PLAYERS:
                     if player != Username:
-                        Check_Rent(Username, 50)
+                        Check_Rent(Username, 50, CELLS)
                         Deposit(player, 50)
                         time.sleep(2)

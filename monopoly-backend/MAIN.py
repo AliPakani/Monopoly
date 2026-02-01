@@ -148,7 +148,6 @@ def Main() :
     
     
     def Save_Game():
-        global PLAYERS, CELLS
         players_data = json.dumps(PLAYERS, ensure_ascii=False, indent=4)                        
         players_data = players_data.replace("},\n    {", "},\n\n    {")
         with open("PLAYERS.json", "w", encoding="utf-8") as f:

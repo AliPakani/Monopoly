@@ -43,9 +43,9 @@ def Buy(Username, Estate) :
     Estate["Owner"] = Username["Username"]
 
 def Sell(Username, Estate) :
-    Estate["Owner"] = ""
     I = Username["Estate"].index(Estate)
     Username["Estate"].pop(I)
+    Estate["Owner"] = ""
 
 
 def Assest(Username) :                                      #جمغ کل دارایی ها

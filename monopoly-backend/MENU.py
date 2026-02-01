@@ -300,7 +300,7 @@ def result_score_leaderboard(lead_data):
             return None
         
     result={
-        "Game": number,
+        "save": number,
         "Rank1": check(0),
         "Rank2": check(1),
         "Rank3": check(2),
@@ -372,16 +372,17 @@ def score_leaderboard():
     lead_data.sort(key=lambda player: (player["TotalAssets"], player["PropertyCount"], player["Balance"]), reverse=True)
     result_score_leaderboard(lead_data)
 
-    table = Table(title="[bold cyan]Leaderboard[/bold cyan]", box=box.ROUNDED)
-    table.add_column("Rank", justify="right",style="magenta" )
-    table.add_column("Username",style="cyan")
-    table.add_column("Balance", justify="right",style="magenta")
-    table.add_column("Estate Count", justify="right",style="magenta")
-    table.add_column("Estate Value", justify="right",style="magenta")
-    table.add_column("Railroad Value", justify="right",style="magenta")
-    table.add_column("Company Value", justify="right",style="magenta")
-    table.add_column("Total Assets", justify="right",style="magenta")
-    table.add_column("Status", style="cyan")
+
+    table = Table(title="[italic bold #003366]scoreboard[/italic bold #003366]", box=box.ROUNDED , header_style="italic bold #C8A000")
+    table.add_column("Rank", justify="right",style="italic bold #003366" )
+    table.add_column("Username",style="italic bold #C8A000")
+    table.add_column("Balance", justify="right",style="italic bold #003366")
+    table.add_column("Estate Count", justify="right",style="italic bold #003366")
+    table.add_column("Estate Value", justify="right",style="italic bold #003366")
+    table.add_column("Railroad Value", justify="right",style="italic bold #003366")
+    table.add_column("Company Value", justify="right",style="italic bold #003366")
+    table.add_column("Total Assets", justify="right",style="italic bold #003366")
+    table.add_column("Status", style="italic bold #C8A000")
 
     for index, data in enumerate(lead_data, start=1):
         table.add_row(
@@ -396,9 +397,10 @@ def score_leaderboard():
             data["Status"]
 
         )
+        
 
-    console.print(table)
-    return lead_data
+    
+    return console.print(Align.center(table))
 
 def interactive_menu(title_str, options):
     

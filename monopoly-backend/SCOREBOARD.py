@@ -139,16 +139,16 @@ def score_leaderboard():
     result_score_leaderboard(lead_data)
 
 
-    table = Table(title="[bold cyan]Leaderboard[/bold cyan]", box=box.ROUNDED , header_style="bold cyan")
-    table.add_column("Rank", justify="right",style="magenta" )
-    table.add_column("Username",style="cyan")
-    table.add_column("Balance", justify="right",style="magenta")
-    table.add_column("Estate Count", justify="right",style="magenta")
-    table.add_column("Estate Value", justify="right",style="magenta")
-    table.add_column("Railroad Value", justify="right",style="magenta")
-    table.add_column("Company Value", justify="right",style="magenta")
-    table.add_column("Total Assets", justify="right",style="magenta")
-    table.add_column("Status", style="cyan")
+    table = Table(title="[italic bold #003366]Leaderboard[/italic bold #003366]", box=box.ROUNDED , header_style="italic bold #C8A000")
+    table.add_column("Rank", justify="right",style="italic bold #003366" )
+    table.add_column("Username",style="italic bold #C8A000")
+    table.add_column("Balance", justify="right",style="italic bold #003366")
+    table.add_column("Estate Count", justify="right",style="italic bold #003366")
+    table.add_column("Estate Value", justify="right",style="italic bold #003366")
+    table.add_column("Railroad Value", justify="right",style="italic bold #003366")
+    table.add_column("Company Value", justify="right",style="italic bold #003366")
+    table.add_column("Total Assets", justify="right",style="italic bold #003366")
+    table.add_column("Status", style="italic bold #C8A000")
 
     for index, data in enumerate(lead_data, start=1):
         table.add_row(
@@ -173,4 +173,5 @@ def score_leaderboard():
 
 
 score_leaderboard()
+
 

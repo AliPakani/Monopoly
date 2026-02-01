@@ -19,7 +19,7 @@ from rich.table import Table
 from rich.text import Text
 from rich.align import Align
 from rich import box
-
+from MAIN import Main
 
 console = Console()
 DARK_BLUE = "#000080"    
@@ -124,6 +124,7 @@ def start_game_logic():
     print("\033[1m★ GAME STARTED! ★\033[0m")
     print(f"Players in match: {', '.join(ready_players)}")
     #تابع موقت منطق بازی که بعد از مرج، تابع اصلی جایگزین میشود
+    Main()
 
 def signup():
 

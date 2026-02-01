@@ -373,7 +373,7 @@ def score_leaderboard():
     result_score_leaderboard(lead_data)
 
 
-    table = Table(title="[italic bold #003366]scoreboard[/italic bold #003366]", box=box.ROUNDED , header_style="italic bold #C8A000")
+    table = Table(title="[italic bold #003366]leaderboard[/italic bold #003366]", box=box.ROUNDED , header_style="italic bold #C8A000")
     table.add_column("Rank", justify="right",style="italic bold #003366" )
     table.add_column("Username",style="italic bold #C8A000")
     table.add_column("Balance", justify="right",style="italic bold #003366")

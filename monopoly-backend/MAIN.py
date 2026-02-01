@@ -194,7 +194,7 @@ while True :
                             Amount = Find_Rent(Cell)
                             Dedute(Username, Amount)
                         Community_chest(Username, Number, CELLS, PLAYERS)
-                        Chance(Username, Number, PLAYERS, CELLS, PLAYERS)
+                        Chance(Username, Number, PLAYERS, CELLS)
                         if Number == 31 :
                             Go_To_Jail(Username, CELLS, PLAYERS)
                     else :                                                              #خانه های قابل خرید

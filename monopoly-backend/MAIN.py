@@ -167,6 +167,7 @@ def Main() :
         if c == 3 :
             return 0
         c = 0
+        os.system('cls' if os.name == 'nt' else 'clear')
         score_leaderboard()
         Choice = input("PRESS ENTER TO CONTINUE...".center(size))
         for Username in PLAYERS :

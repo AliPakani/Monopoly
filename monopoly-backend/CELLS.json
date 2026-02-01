@@ -146,18 +146,16 @@
         "no.": 9,
         "Price": 100,
         "Rent": [
-            6
-        ],
-        "Owner": "",
-        "color": "Cyien",
-        "Number": 0,
-        "Rent_Build": [
+            6,
             30,
             90,
             270,
             400,
             550
         ],
+        "Owner": "",
+        "color": "Cyien",
+        "Number": 0,
         "Build_Price": 50
     },
 

@@ -8,8 +8,8 @@ size = size.columns
 def Roll(Username) :
     Choice = input(("Roll the dice").center(size))
     c = 0
-    Dice1 = int(input())
-    Dice2 = int(input())
+    Dice1 = random.randint(1,6)
+    Dice2 = random.randint(1,6)
     Move = Dice1 + Dice2
     Username["Dice"] = [Dice1, Dice2]
     print((f"You roll {Dice1} & {Dice2}").center(size))

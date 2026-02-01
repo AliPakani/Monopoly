@@ -172,4 +172,5 @@ def score_leaderboard():
 
 
 
+score_leaderboard()
 

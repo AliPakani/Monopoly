@@ -233,6 +233,7 @@ def Main() :
                                         break
                                 if Username["Username"] == Owner["Username"] :
                                     print("You're the owner!".center(size))
+                                    time.sleep(2)
                                 else :
                                     Company = Company_Rent(Username, Owner, Number)
                                     if Company > 0 :

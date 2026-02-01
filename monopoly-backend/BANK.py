@@ -17,7 +17,6 @@ def Check_Assest(Username, AssestList) :                    #جمع قیمت ا�
     Sum = 0
     for Estate in AssestList :
         Sum += Find_Price(Estate)
-        print(Sum)
     return Sum
 
 

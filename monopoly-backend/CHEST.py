@@ -15,7 +15,7 @@ def Community_chest(Username, Number, CELLS, PLAYERS):
                 Deposit(Username, 200)
                 time.sleep(2)
             case 3 :
-                Check_Rent(Username, 100)
+                Check_Rent(Username, 100, CELLS)
                 time.sleep(2)
             case 4 :
                 Go_To_Jail(Username, CELLS, PLAYERS)

@@ -19,7 +19,7 @@ def Jail(Username) :
             return
         elif first_character == "n"  :
             Status = Roll_Jail(Username)
-            if Status == 0 :
+            if Status != 1 :
                 Check_Rent(Username, 50)
             return
         else:

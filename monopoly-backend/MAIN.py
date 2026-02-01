@@ -153,41 +153,50 @@ def Save_Game():
 
 
 while True :
+    c = 0
+    for Username in PLAYERS :
+        if Username["Status"] == "Bankrupt" :
+            c += 1
+    if c == 3 :
+        break
+    c = 0
     for Username in PLAYERS :
         if Username["Status"] == "Solvent" :
             FLAG = 0
             c = 0
-            while FLAG == 0 :  
-                print(f"It's {Username["Username"]}'s turn.")  
-                print(f"Now you're in {Username["Position"]}")
+            while FLAG == 0 : 
+                board_structure(Username, CELLS, PLAYERS)
                 if Username["Arrested"] :
                     Jail(Username)
                 else :
-                    if Roll(Username) == 0 :
+                    House(Username)
+                    Move, F = Roll(Username)
+                    if F == 0 :
+                        animated_move(Username, Move, CELLS, PLAYERS)
                         FLAG = 1
                     else :
+                        animated_move(Username, Move, CELLS, PLAYERS)
                         c += 1
                         if c == 3 :
-                            Go_To_Jail(Username)
+                            Go_To_Jail(Username, CELLS, PLAYERS)
                             break
-                    Position(Username)
                     Number = Username["Position"]                                       #شماره خانه کنونی بازیکن
                     Cell = CELLS[Number]
-                    print(f"You're in {Cell["name"]}")                                            #اطلاعات خانه کنونی بازیکن به صورت دیکشنری
+                    print((f"You're in {Cell["name"]}").center(size))                                         #اطلاعات خانه کنونی بازیکن به صورت دیکشنری
                     if Find_Price(Cell) == 0 :                                          #خانه های غیر قابل خرید
                         if Find_Rent(Cell) != 0:                                        
                             Amount = Find_Rent(Cell)
                             Dedute(Username, Amount)
-                        Community_chest(Username, Number)
-                        Chance(Username, Number, PLAYERS)
+                        Community_chest(Username, Number, CELLS, PLAYERS)
+                        Chance(Username, Number, PLAYERS, CELLS, PLAYERS)
                         if Number == 31 :
-                            Go_To_Jail(Username, Number, CELLS, PLAYERS)
+                            Go_To_Jail(Username, CELLS, PLAYERS)
                     else :                                                              #خانه های قابل خرید
                         if Find_Owner(Cell) == "" : 
                             while True :                                  
-                                Choice = input("Do you want to buy it?(Y/N)").lower().strip()
+                                Choice = input("Do you want to buy it?(Y/N)".center(size)).lower().strip()
                                 if not Choice :
-                                    print("please enter Y or N")
+                                    print("please enter Y or N".center(size))
                                     continue
                                 first_character = Choice[0]
                                 if first_character == 'y' :                                             #خرید
@@ -199,12 +208,13 @@ while True :
                                         Railroad(Username, Number, Cell)
                                         Company_Buy(Username, Number, Cell)
                                     else :
-                                        print(f"You can't buy {Cell["name"]}")    
+                                        print(f"You can't buy {Cell["name"]}".center(size)) 
+                                        time.sleep(2)
                                     break
                                 elif first_character == "n" :
                                     break
                                 else :
-                                    print("invalid input!please enter Y or N")           
+                                    print("invalid input!please enter Y or N".center(size))           
                         else :                                                             #اجاره
                             Owner = Find_Owner(Cell)
                             for i in PLAYERS:
@@ -212,7 +222,7 @@ while True :
                                     Owner = i
                                     break
                             if Username["Username"] == Owner["Username"] :
-                                print("You're the owner!")
+                                print("You're the owner!".center(size))
                             else :
                                 Company = Company_Rent(Username, Owner, Number)
                                 if Company > 0 :
@@ -226,6 +236,9 @@ while True :
                                     Can_Pay = Check_Rent(Username, Amount)
                                     if Can_Pay == 1 :
                                         Deposit(Owner, Amount)
+                                    else :
+                                        Deposit(Owner, Balance)
+                                        Lost_Estate(Username, Owner, CELLS)
     while True :
         Save = input("Do you want to save game?(Y/N)").lower().strip()
         if not Save:

@@ -111,13 +111,14 @@ def check_pass(password):
 
 def start_game_logic():
     os.system('cls' if os.name == 'nt' else 'clear')
-    Main()
+    i = Main()
     score_leaderboard()
     time.sleep(20)
-    if os.path.exists(FILE_PATH):
-        os.remove(FILE_PATH)
-    if os.path.exists(scoreboard_file):
-        os.remove(scoreboard_file)   
+    if i == 0 :
+      if os.path.exists(FILE_PATH):
+          os.remove(FILE_PATH)
+      if os.path.exists(scoreboard_file):
+          os.remove(scoreboard_file)   
     ready_players.clear()
 def signup():
 

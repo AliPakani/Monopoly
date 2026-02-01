@@ -19,7 +19,7 @@ def Lost_Estate(Username, Owner, CELLS) :
 def Bankrupt(Username) :
     Username["Status"] = "Bankrupt"
     Username["Balance"] = 0
-    print(f"Hey {Username['Username']}! You got bankrupt!")
+    print(f"Hey {Username['Username']}! You got bankrupt!".center(size))
     time.sleep(2)
 
 def Dedute(Username, amount) :
@@ -34,7 +34,7 @@ def Dedute(Username, amount) :
 
 def Deposit(Username, Amount) :
     Username["Balance"] += Amount
-    print(f"{Amount}$ added to {Username["Username"]}'s balance!")
+    print(f"{Amount}$ added to {Username["Username"]}'s balance!".center(size))
     time.sleep(2)
 
 

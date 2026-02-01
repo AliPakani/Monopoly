@@ -23,12 +23,12 @@ def Roll(Username) :
 def Roll_Jail(Username) :
     c = 0
     while c < 3 :
-        Dice1 = random.randint(1,6)
-        Dice2 = random.randint(1,6)
+        Choice = input(("Roll the dice").center(size))
+        Dice1 = int(input())
+        Dice2 = int(input())
         c += 1
         if Dice1 == Dice2:
             Username["Arrested"] = False
             Username["Position"] += Dice1 + Dice2
-            return 1
-    return 0
+            return 1        
         

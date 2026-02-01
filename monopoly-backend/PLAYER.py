@@ -1,18 +1,41 @@
 from ESTATE import Find_Price
+import time 
+import os
+from BOARD import animated_move
+
+size = os.get_terminal_size()
+size = size.columns
+
+def Lost_Estate(Username, Owner, CELLS) :
+    if Owner != "" :
+        for Estate in Username["Estate"] :
+            for Target in CELLS :
+                if Estate["name"] == Target["name"] :
+                    Target["Owner"] = Owner["Username"]
+                    Owner["Estate"].append(Target)
+    Username["Estate"].clear()
+
 
 def Bankrupt(Username) :
     Username["Status"] = "Bankrupt"
-    print(f"Hey {Username["Username"]}! You got bankrupt!")
+    Username["Balance"] = 0
+    print(f"Hey {Username['Username']}! You got bankrupt!")
+    time.sleep(2)
 
 def Dedute(Username, amount) :
-    Username["Balance"] -= amount
-    print(f"{amount}$ deducted from {Username["Username"]}'s balance!")
+    if Username["Balance"] - amount > 0 :
+        Username["Balance"] -= amount
+        print((f"{amount}$ deducted from {Username["Username"]}'s balance!").center(size))
+        time.sleep(2)
+    else :
+        Username["Balance"] = 0
+
 
 
 def Deposit(Username, Amount) :
     Username["Balance"] += Amount
     print(f"{Amount}$ added to {Username["Username"]}'s balance!")
-
+    time.sleep(2)
 
 
 def Buy(Username, Estate) :
@@ -31,7 +54,8 @@ def Assest(Username) :                                      #جمغ کل دار�
     return Sum + Username["Balance"]
 
 
-def Go_To_Jail(Username) :
-    Username["Position"] = 11
+def Go_To_Jail(Username, CELLS, PLAYERS) :
+    animated_move(Username, 11 - Username["Position"], CELLS, PLAYERS)
     Username["Arrested"] = True
-    print("You went to jail!")
+    print(("You went to jail!").center(size))
+    time.sleep(2)

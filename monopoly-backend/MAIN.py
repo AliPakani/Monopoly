@@ -53,7 +53,7 @@ def Main() :
             try :
                 if Choice == 'Y' :
                     Amount = Estate["Build_Price"]
-                    Check = Check_Rent(Username, Amount)
+                    Check = Check_Rent(Username, Amount, CELLS)
                     if Check == 1 :
                         for i in Required_Estate :
                             i["Rent"].pop(0)
@@ -86,7 +86,7 @@ def Main() :
                             Choice = CELLS[Estate_selection(Required_Estate)]
                             if Consecutiveness(Choice, Required_Estate) == 1 :
                                 Amount = Choice["Build_Price"]
-                                Check = Check_Rent(Username, Amount)
+                                Check = Check_Rent(Username, Amount, CELLS)
                                 if Check == 1 :
                                     Choice["Rent"].pop(0)
                                     Choice["Number"] += 1
@@ -177,7 +177,7 @@ def Main() :
                 while FLAG == 0 : 
                     board_structure(Username, CELLS, PLAYERS)
                     if Username["Arrested"] :
-                        Jail(Username)
+                        Jail(Username, CELLS)
                     else :
                         House(Username)
                         Move, F = Roll(Username)
@@ -245,7 +245,7 @@ def Main() :
                                         Deposit(Owner, Amount)
                                     else :
                                         Balance = Username["Balance"]
-                                        Can_Pay = Check_Rent(Username, Amount)
+                                        Can_Pay = Check_Rent(Username, Amount, CELLS)
                                         if Can_Pay == 1 :
                                             Deposit(Owner, Amount)
                                         else :

@@ -1,4 +1,8 @@
 import json
+import os
+
+size = os.get_terminal_size()
+size = size.columns
 
 CELLS = json.load(open("CELLS.json"))
 
@@ -19,7 +23,7 @@ def Find_Rent(Estate) :
 
 def Owner_Replace(Username, Estate) :
     Estate["Owner"] = Username["Username"]
-    print(f"Now {Username["Username"]} is the owner of {Estate["name"]}")
+    print((f"Now {Username["Username"]} is the owner of {Estate["name"]}").center(size))
 
 
 def Find_Estate(EstateList) :                                               #با استفاده از شماره یک خانه اطلاعات دیکشنری مربوط به آن خانه را به دست می آورد

@@ -198,7 +198,7 @@ def Main() :
                         if Find_Price(Cell) == 0 :                                          #خانه های غیر قابل خرید
                             if Find_Rent(Cell) != 0:                                        
                                 Amount = Find_Rent(Cell)
-                                Dedute(Username, Amount)
+                                Check_Rent(Username, Amount, CELLS)
                             Community_chest(Username, Number, CELLS, PLAYERS)
                             Chance(Username, Number, PLAYERS, CELLS)
                             if Number == 31 :

@@ -1,5 +1,4 @@
 import random
-from MOVE import Position
 from PLAYER import Deposit, Go_To_Jail
 from BANK import Check_Rent
 import os

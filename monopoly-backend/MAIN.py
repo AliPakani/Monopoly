@@ -56,6 +56,7 @@ def Main() :
                     Check = Check_Rent(Username, Amount, CELLS)
                     if Check == 1 :
                         for i in Required_Estate :
+                            i["Price"] += i["Build_Price"]
                             i["Rent"].pop(0)
                         print(("You build a hotel succesfully!").center(size))
                     else :
@@ -90,6 +91,7 @@ def Main() :
                                 if Check == 1 :
                                     Choice["Rent"].pop(0)
                                     Choice["Number"] += 1
+                                    Choice["Price"] += Choice["Build_Price"]
                                     print(("You build a house succesfully!").center(size))
                                 else :
                                     Username["Status"] = "Solvent"

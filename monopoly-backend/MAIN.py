@@ -158,14 +158,15 @@ def Main() :
         with open("CELLS.json", "w", encoding="utf-8") as f:
             f.write(cells_data)
     
-    
-    while True :
+
+    playing = True
+    while playing :
         c = 0
         for Username in PLAYERS :
             if Username["Status"] == "Bankrupt" :
                 c += 1
         if c == 3 :
-            break
+            return 0
         c = 0
         score_leaderboard()
         Choice = input("PRESS ENTER TO CONTINUE...".center(size))
@@ -269,11 +270,10 @@ def Main() :
                 continue
             first_character = Exit[0]
             if first_character == "y":
+                playing = False
                 break
             elif first_character == "n":
                 break
             else:
                 print("invalid input!please enter Y or N")
-        if first_character == "n" :
-            break
         

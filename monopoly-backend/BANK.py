@@ -38,7 +38,7 @@ def Check_Rent(Username, Amount, CELLS):
         if Assest(Username) // 2 > Amount :                             
             AssestList = []
             Debt = 0
-            while Debt < Amount : 
+            while Debt // 2 < Amount : 
                 Debt = Check_Assest(Username, AssestList)
                 print(("YOU ARE THE OWNER OF THESE ESTATES:", same_owner(Username, CELLS)).center(size))
                 EstateList = list(map(int, input(("Which estate do you want to sell?").center(size)).split()))
@@ -46,10 +46,10 @@ def Check_Rent(Username, Amount, CELLS):
                     AssestList = Find_Estate(EstateList)
                 except Exception as e :
                     print(("Invalid input! Please enter the NUMBER").center(size))
-            Deposit(Username, Debt)
+            Deposit(Username, Debt // 2)
             for Estate in AssestList :                              
                 Sell(Username, Estate)
-                Dedute(Username, Amount)
+            Dedute(Username, Amount)
             Username["Arrested"] = False
             return 1
         else :

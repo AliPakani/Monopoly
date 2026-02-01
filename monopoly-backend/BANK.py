@@ -1,6 +1,10 @@
 import json
 from PLAYER import Bankrupt, Dedute, Deposit, Buy, Sell, Assest
 from ESTATE import Find_Price, Find_Estate
+import os
+
+size = os.get_terminal_size()
+size = size.columns
 
 
 def Check_Balance(Username, amount) :
@@ -28,11 +32,11 @@ def Check_Rent(Username, Amount):
             Debt = 0
             while Debt < Amount : 
                 Debt = Check_Assest(Username, AssestList)
-                EstateList = list(map(int, input(("Which estate do you want to sell?"))))
+                EstateList = list(map(int, input(("Which estate do you want to sell?").center(size))))
                 try :
                     AssestList = Find_Estate(EstateList)
                 except Exception as e :
-                    print(("Invalid input! Please enter the NUMBER"))
+                    print(("Invalid input! Please enter the NUMBER").center(size))
             Deposit(Username, Debt)
             for Estate in AssestList :                              
                 Sell(Username, Estate)

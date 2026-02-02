@@ -1,8 +1,8 @@
-# 🎩 Monopoly Python (Backend & CLI)
+#  Monopoly Python (Backend & CLI)
 
 A comprehensive Python implementation of the classic Monopoly game, focused on robust backend logic, data security, and an engaging Command Line Interface (CLI). This project features a modular architecture, secure user management, and dynamic gameplay.
 
-## ✨ Key Features
+##  Key Features
 * **Rich UI:** Utilizes the `Rich` library to render colorful text, organized tables, and a visually appealing terminal experience.
 * **User Security:** Implements `bcrypt` for secure password hashing and `uuid` for unique player identification.
 * **JSON Data Management:** Persistent storage for game configurations (`CELLS.json`) and player profiles (`PLAYERS.json`).
@@ -11,7 +11,7 @@ A comprehensive Python implementation of the classic Monopoly game, focused on r
 
 ---
 
-## 🛠 Tech Stack
+##  Tech Stack
 * **Language:** Python
 * **Libraries:** * `Rich`: For CLI styling and formatting.
     * `Bcrypt`: For encryption and security.
@@ -23,7 +23,7 @@ A comprehensive Python implementation of the classic Monopoly game, focused on r
 
 ## 📂 Project Structure
 
-### 🎮 Core Backend & Logic
+###  Core Backend & Logic
 * `MAIN.py`: The primary entry point for the game engine.
 * `BOARD.py`: Manages the board layout and tile logic.
 * `PLAYER.py`: Defines player attributes, inventory, and movement.
@@ -31,14 +31,14 @@ A comprehensive Python implementation of the classic Monopoly game, focused on r
 * `ESTATE.py`, `RAILROAD.py`, `COMPANY.py`: Specialized logic for different property types.
 * `DICE.py`: RNG-based movement system.
 
-### 👤 Menu & Database
+###  Menu & Database
 * `menu1.py`: The interface for login, registration, and game setup.
 * `PLAYERS.json`: Stores encrypted user credentials and statistics.
 * `CELLS.json`: Configuration file for board positions and property values.
 
 ---
 
-## 🚀 Getting Started
+##  Getting Started
 
 1. **Clone the repository:**
    ```bash
@@ -53,7 +53,7 @@ A comprehensive Python implementation of the classic Monopoly game, focused on r
    
 ---
 
-## 👥 Contributors
+##  Contributors
 
 * **Ali Pakani** - Project Lead & Backend Architecture
 * **mehrdadab** - Backend Engine & Core Logic
@@ -63,7 +63,7 @@ A comprehensive Python implementation of the classic Monopoly game, focused on r
 
 ---
 
-## 📄 License
+##  License
 
 This project is licensed under the **MIT License**. See the [LICENSE](LICENSE) file for more details.
 

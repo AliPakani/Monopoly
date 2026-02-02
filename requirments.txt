@@ -1,3 +1,0 @@
-کتابخانه های مورد نیاز برای ران کردن کد:
-json, re, os, uuid, bcrypt, keyboard, time, winsound, rich, random
-برای اجرای گیم از فایل MENU.py ران بگیرید

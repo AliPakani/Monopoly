@@ -13,7 +13,9 @@ A comprehensive Python implementation of the classic Monopoly game, focused on r
 
 ##  Tech Stack
 * **Language:** Python
-* **Libraries:** * `Rich`: For CLI styling and formatting.
+* **Libraries:**
+  
+    * `Rich`: For CLI styling and formatting.
     * `Bcrypt`: For encryption and security.
     * `Keyboard`: For real-time user input handling.
     * `Winsound`: For Windows-native sound effects.
@@ -49,7 +51,7 @@ A comprehensive Python implementation of the classic Monopoly game, focused on r
    pip install rich bcrypt keyboard
 3. **Run the game:**
    ```bash
-   python menu1.py
+   python MENU.py
    
 ---
 

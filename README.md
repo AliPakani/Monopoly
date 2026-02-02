@@ -21,7 +21,7 @@ A comprehensive Python implementation of the classic Monopoly game, focused on r
 
 ---
 
-## 📂 Project Structure
+##  Project Structure
 
 ###  Core Backend & Logic
 * `MAIN.py`: The primary entry point for the game engine.
